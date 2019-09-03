@@ -15,8 +15,11 @@ export class TasksController {
     constructor(private tasksService: TasksService) {}
 
     @Get()
-    getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto) {
-        return this.tasksService.getTasks(filterDto);
+    getTasks(
+        @Query(ValidationPipe) filterDto: GetTasksFilterDto,
+        @GetUser() user: User,
+    ) {
+        return this.tasksService.getTasks(filterDto, user);
     }
 
     @Get('/:id')
