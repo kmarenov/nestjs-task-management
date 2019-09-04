@@ -50,10 +50,10 @@ export class TasksService {
         return this.taskRepository.createTask(createTaskDto, user);
     }
 
-    // async updateTaskStatus(id: number, status: TaskStatus): Promise<Task> {
-    //     const task = await this.getTaskById(id);
-    //     task.status = status;
-    //     await task.save();
-    //     return task;
-    // }
+    async updateTaskStatus(id: number, status: TaskStatus, user: User): Promise<Task> {
+        const task = await this.getTaskById(id, user);
+        task.status = status;
+        await task.save();
+        return task;
+    }
 }
